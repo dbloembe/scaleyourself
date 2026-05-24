@@ -1,23 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import AnnouncementBar from "@/components/AnnouncementBar";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export const metadata: Metadata = {
-  title: "Scale Yourself — Coaching & Resources for Startup Founders",
+  title: "Scale Yourself",
   description:
-    "Build the emotional, management, and leadership skills you need to scale at the speed of your startup. Trusted by 2000+ YC Founders.",
+    "Coaching and content that helps founders grow as quickly as their startups",
+  icons: {
+    icon: "/images/1c26e0934b1ea057-favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -26,14 +20,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
+    <html lang="en">
+      <body className="min-h-screen flex flex-col">
+        <AnnouncementBar />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <ScrollToTop />
       </body>
     </html>
   );

@@ -1,132 +1,148 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
-
-const navLinks = [
-  { href: "/the-user-manual", label: "The User Manual" },
-  {
-    label: "Founder Coaching",
-    children: [
-      { href: "/find-a-founder-coach", label: "Find a Founder Coach" },
-      { href: "/work-with-amy", label: "Work With Amy" },
-    ],
-  },
-  { href: "/about", label: "About" },
-  { href: "/subscribe", label: "Subscribe" },
-];
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [coachingOpen, setCoachingOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-border">
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="text-xl font-semibold tracking-tight">
-          Scale Yourself
+    <header className="sticky top-0 z-50 bg-black">
+      <div className="max-w-[1400px] mx-auto px-[6vw] flex items-center justify-between h-[72px]">
+        {/* Logo */}
+        <Link href="/" className="flex-shrink-0">
+          <Image
+            src="/images/f114bcfec7d7a9ac-SY-Logo-BW-Transparent.png"
+            alt="Scale Yourself"
+            width={90}
+            height={45}
+            className="invert"
+          />
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) =>
-            link.children ? (
-              <div
-                key={link.label}
-                className="relative"
-                onMouseEnter={() => setDropdownOpen(true)}
-                onMouseLeave={() => setDropdownOpen(false)}
-              >
-                <button className="text-sm text-muted hover:text-foreground transition">
-                  {link.label}
-                </button>
-                {dropdownOpen && (
-                  <div className="absolute top-full left-0 pt-2">
-                    <div className="bg-white rounded-lg shadow-lg border border-border py-2 min-w-[200px]">
-                      {link.children.map((child) => (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          className="block px-4 py-2 text-sm text-muted hover:text-foreground hover:bg-gray-50 transition"
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                )}
+        <nav className="hidden md:flex items-center gap-8 text-white text-[15px]">
+          <Link
+            href="/the-user-manual"
+            className="nav-link py-1 transition-colors hover:text-white"
+          >
+            The User Manual
+          </Link>
+          <div
+            className="relative"
+            onMouseEnter={() => setCoachingOpen(true)}
+            onMouseLeave={() => setCoachingOpen(false)}
+          >
+            <button className="nav-link py-1 transition-colors text-[#ff01c7]">
+              Founder Coaching
+            </button>
+            {coachingOpen && (
+              <div className="absolute top-full left-0 pt-2 min-w-[200px]">
+                <div className="bg-transparent py-1">
+                  <Link
+                    href="/find-a-founder-coach"
+                    className="nav-folder-link block px-0 py-1 text-white/80 hover:text-white transition-colors"
+                  >
+                    Find a Founder Coach
+                  </Link>
+                  <Link
+                    href="/work-with-amy"
+                    className="nav-folder-link block px-0 py-1 text-white/80 hover:text-white transition-colors"
+                  >
+                    Work with Amy
+                  </Link>
+                </div>
               </div>
-            ) : (
-              <Link
-                key={link.href}
-                href={link.href!}
-                className="text-sm text-muted hover:text-foreground transition"
-              >
-                {link.label}
-              </Link>
-            )
-          )}
+            )}
+          </div>
+          <Link
+            href="/about"
+            className="nav-link py-1 transition-colors hover:text-white"
+          >
+            About
+          </Link>
+          <Link
+            href="/subscribe"
+            className="nav-link py-1 transition-colors hover:text-white"
+          >
+            Subscribe
+          </Link>
           <Link
             href="/find-a-founder-coach"
-            className="bg-accent text-white text-sm px-5 py-2 rounded-full hover:opacity-90 transition"
+            className="outline-btn-white px-7 py-2.5 text-[14px] ml-2"
           >
             Get Started
           </Link>
         </nav>
 
-        {/* Mobile Toggle */}
+        {/* Mobile hamburger */}
         <button
-          className="md:hidden p-2"
+          className="md:hidden text-white p-2"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
-          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            {mobileOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
+          <div className="space-y-1.5">
+            <span
+              className={`block w-6 h-0.5 bg-white transition-transform ${mobileOpen ? "rotate-45 translate-y-2" : ""}`}
+            />
+            <span
+              className={`block w-6 h-0.5 bg-white transition-opacity ${mobileOpen ? "opacity-0" : ""}`}
+            />
+            <span
+              className={`block w-6 h-0.5 bg-white transition-transform ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`}
+            />
+          </div>
         </button>
       </div>
 
       {/* Mobile Nav */}
       {mobileOpen && (
-        <nav className="md:hidden border-t border-border bg-white px-6 py-4 space-y-3">
-          {navLinks.map((link) =>
-            link.children ? (
-              <div key={link.label} className="space-y-2">
-                <span className="text-sm font-medium text-muted">{link.label}</span>
-                {link.children.map((child) => (
-                  <Link
-                    key={child.href}
-                    href={child.href}
-                    className="block pl-4 text-sm text-muted hover:text-foreground"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    {child.label}
-                  </Link>
-                ))}
-              </div>
-            ) : (
-              <Link
-                key={link.href}
-                href={link.href!}
-                className="block text-sm text-muted hover:text-foreground"
-                onClick={() => setMobileOpen(false)}
-              >
-                {link.label}
-              </Link>
-            )
-          )}
+        <div className="md:hidden bg-black border-t border-white/10 px-[6vw] py-6 space-y-2 text-white">
+          <Link
+            href="/the-user-manual"
+            className="block py-2 leading-[1.4em]"
+            onClick={() => setMobileOpen(false)}
+          >
+            The User Manual
+          </Link>
           <Link
             href="/find-a-founder-coach"
-            className="block text-center bg-accent text-white text-sm px-5 py-2 rounded-full"
+            className="block py-2 leading-[1.4em]"
+            onClick={() => setMobileOpen(false)}
+          >
+            Find a Founder Coach
+          </Link>
+          <Link
+            href="/work-with-amy"
+            className="block py-2 leading-[1.4em]"
+            onClick={() => setMobileOpen(false)}
+          >
+            Work with Amy
+          </Link>
+          <Link
+            href="/about"
+            className="block py-2 leading-[1.4em]"
+            onClick={() => setMobileOpen(false)}
+          >
+            About
+          </Link>
+          <Link
+            href="/subscribe"
+            className="block py-2 leading-[1.4em]"
+            onClick={() => setMobileOpen(false)}
+          >
+            Subscribe
+          </Link>
+          <Link
+            href="/find-a-founder-coach"
+            className="gradient-btn inline-block px-7 py-3 text-[14px] mt-4"
             onClick={() => setMobileOpen(false)}
           >
             Get Started
           </Link>
-        </nav>
+        </div>
       )}
     </header>
   );

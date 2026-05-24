@@ -1,93 +1,164 @@
-import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import TrustLogos from "@/components/TrustLogos";
+import Testimonials from "@/components/Testimonials";
+import NewsletterSection from "@/components/NewsletterSection";
 
-export const metadata: Metadata = {
-  title: "Work With Amy — Scale Yourself",
-  description:
-    "Weekly founder coaching with Amy Buechler, licensed psychotherapist and former YC Batch Director.",
-};
+const whatWorking = [
+  {
+    title: "COACH ON CALL",
+    desc: "This is a function of empathy. I believe you have everything you need to succeed and that our task is to discover, reveal, and apply your existing capability to the challenge you're facing. The path forward begins exactly where you are, and we'll find a step forward for you whether we're starting from your limitation or your strength.",
+  },
+  {
+    title: "CLINICAL SKILL",
+    desc: "I bring the depth that comes from clinical training - with an expert hand, with quiet clarity, and with complete trust in the capacity of my founders. It's a combination of skill and respect that founders seldom find, because it doesn't exist at this scale anywhere else.",
+  },
+  {
+    title: "FORENSIC CURIOSITY",
+    desc: "Most mentors and advisors tell you what to do. Mine is a relentless experience to deeply inspect. You think and feel and believe what you do because of your life experiences, and we'll work together to understand the patterns that are helping you and the ones that are preventing you from executing at the highest possible level.",
+  },
+  {
+    title: "FINANCIAL ANALYSIS",
+    desc: "When you're stuck or making a mistake, I'll surface it. Your ability to scale will come from confronting difficult truths, and your experience with me will show you that difficult truths are the fastest, most efficient catalyst to change.",
+  },
+  {
+    title: "SUCCESS STORIES ACTIVATED",
+    desc: "I have heard hundreds of founder's stories at scale - no coach alive has heard as many. So you'll be getting a coach who's pattern-matched the full lifecycle of scaling from 2 to 200+ employees, through both triumphs and their most intimate struggles.",
+  },
+  {
+    title: "FREEDOM & CURIOSITY",
+    desc: "I believe that our making choices that protect and enable the greatest possibilities, the best outcomes for you arrive. As we achieve our ambitions together, you'll be making choices in this new way through - without defensiveness, without rigidity, and with complete trust in yourself.",
+  },
+];
 
-const principles = [
+const quoteTestimonials = [
   {
-    title: "Use what you have",
-    description: "Emphasizes existing capabilities over external solutions.",
+    quote:
+      "Amy guided my transition from being the founder of a small team into becoming an effective, compassionate CTO of a globally-distributed enterprise engineering team experiencing hypergrowth.",
+    name: "Sasha Klizhentas",
+    title: "CTO, Teleport (YC S15)",
   },
   {
-    title: "This is an offering",
-    description: "Non-prescriptive approach respecting founder autonomy.",
-  },
-  {
-    title: "Focus on function",
-    description: "Values-neutral assessment of thoughts and behaviors.",
-  },
-  {
-    title: "Success requires authenticity",
-    description: "Building unique founder-specific strategies.",
-  },
-  {
-    title: "Possibility over certainty",
-    description: "Optimistic belief in founder potential.",
-  },
-  {
-    title: "We learn together",
-    description: "Collaborative expertise pairing.",
+    quote:
+      "Amy reveals elegant, values-aligned solutions I otherwise would have missed. She's a great partner — we owe a share of SafetyWing's success to Amy's wisdom.",
+    name: "Sondre Rasch",
+    title: "CEO, SafetyWing (YC W18)",
   },
 ];
 
 export default function WorkWithAmyPage() {
   return (
     <>
-      <section className="max-w-4xl mx-auto px-6 py-24">
-        <p className="text-sm font-medium text-accent mb-2">Work With Amy</p>
-        <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-          Founder Coaching with Amy Buechler
-        </h1>
-        <div className="mt-8 space-y-6 text-lg text-muted leading-relaxed max-w-3xl">
-          <p>
-            Amy provides weekly founder coaching with async availability.
-            Engagements typically last from seed stage through acquisition or IPO,
-            with a focus on founder psychology and personal growth during
-            hypergrowth periods.
-          </p>
-          <p>
-            She works best with seed-stage VC-funded founders experiencing
-            meaningful growth, leaders preparing for Series A inflection points,
-            and founders building companies with deep and lasting impact.
-          </p>
+      {/* Hero */}
+      <section className="py-20 md:py-28 px-6 md:px-12 bg-[#111] text-white">
+        <div className="max-w-[900px] mx-auto">
+          <h1 className="text-3xl md:text-5xl font-light leading-snug mb-6">
+            To do something you&apos;ve never done before, you have to{" "}
+            <strong>become someone you&apos;ve never been before.</strong>
+          </h1>
         </div>
       </section>
 
-      <section className="bg-gray-50 py-24">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-4">Operating Principles</h2>
-          <p className="text-muted mb-10">
-            Amy&apos;s coaching framework rests on six foundational concepts.
-          </p>
-          <div className="grid sm:grid-cols-2 gap-6">
-            {principles.map((p) => (
-              <div
-                key={p.title}
-                className="bg-white rounded-xl p-6 border border-border"
-              >
-                <h3 className="font-semibold text-lg">{p.title}</h3>
-                <p className="mt-2 text-muted text-sm">{p.description}</p>
-              </div>
-            ))}
+      {/* Amy intro */}
+      <section className="py-16 px-6 md:px-12 bg-[#111] text-white">
+        <div className="max-w-[1100px] mx-auto grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <p className="text-lg mb-4">
+              Amy is a psychotherapist who coached{" "}
+              <strong>thousands of the world&apos;s best startup founders</strong>{" "}
+              at Y Combinator
+            </p>
+            <Link
+              href="/contact"
+              className="gradient-btn inline-block px-8 py-3 text-sm mt-4"
+            >
+              Get in touch
+            </Link>
+          </div>
+          <div className="rounded-2xl overflow-hidden">
+            <Image
+              src="/images/d141b9382be68c69-AI-Headshot.png"
+              alt="Amy Buechler"
+              width={500}
+              height={500}
+              className="w-full h-auto"
+            />
           </div>
         </div>
       </section>
 
-      <section className="max-w-4xl mx-auto px-6 py-24">
-        <div className="bg-accent-light rounded-2xl p-12 text-center">
-          <h2 className="text-3xl font-bold">Interested in working together?</h2>
-          <p className="mt-4 text-muted">
-            Licensed psychotherapist &middot; Y Combinator&apos;s first in-house
-            Founder Coach &middot; ~2,000 founders coached
+      {/* Why Amy works with founders */}
+      <section className="py-16 px-6 md:px-12">
+        <div className="max-w-[800px] mx-auto">
+          <h2 className="text-2xl font-light mb-8">
+            Why Amy works with founders
+          </h2>
+          <p className="text-gray-600 leading-relaxed mb-6">
+            Amy works with VC-funded founders at growth stage who are experiencing
+            the most destabilizing period in a founder&apos;s professional and
+            personal life. The founder who was capable of getting the startup to
+            this point may not yet be capable of scaling it to the next.
           </p>
-          <button className="mt-8 bg-accent text-white px-8 py-3 rounded-full text-base font-medium hover:opacity-90 transition">
-            Get in Touch
-          </button>
+          <p className="text-gray-600 leading-relaxed">
+            She works best with founders whose companies are built to make the
+            world a better, healthier place. She asks a lot of them, and they
+            ask a lot of her. Through her work, the Company&apos;s Day 1 through
+            acquisition or IPO.
+          </p>
         </div>
       </section>
+
+      {/* What working with Amy is like */}
+      <section className="py-16 px-6 md:px-12 bg-[#fafafa]">
+        <div className="max-w-[800px] mx-auto">
+          <h2 className="text-2xl font-light mb-8">
+            What working with Amy is like
+          </h2>
+          <div className="space-y-8">
+            {whatWorking.map((item) => (
+              <div key={item.title}>
+                <h3 className="font-semibold text-sm mb-2">{item.title}</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <Link
+              href="/contact"
+              className="gradient-btn inline-block px-10 py-4 text-base"
+            >
+              Get in touch
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Quotes */}
+      <section className="py-16 px-6 md:px-12">
+        <div className="max-w-[900px] mx-auto grid md:grid-cols-2 gap-8">
+          {quoteTestimonials.map((t, i) => (
+            <blockquote key={i} className="text-center">
+              <p className="text-lg leading-relaxed mb-4 italic">
+                &ldquo;{t.quote}&rdquo;
+              </p>
+              <footer className="text-xs text-gray-400 uppercase tracking-wider">
+                {t.name} — {t.title}
+              </footer>
+            </blockquote>
+          ))}
+        </div>
+      </section>
+
+      {/* Trust Logos */}
+      <TrustLogos />
+
+      {/* Testimonials */}
+      <Testimonials />
+
+      {/* Newsletter */}
+      <NewsletterSection />
     </>
   );
 }
