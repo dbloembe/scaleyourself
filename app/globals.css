@@ -1,0 +1,226 @@
+/* ============================================================
+   Scale Yourself — global stylesheet
+   Ported from the design-system tokens (fonts → colors →
+   typography → spacing). Consumers of the original linked one
+   styles.css; here it is inlined for the Next.js app.
+   ============================================================ */
+
+/* ---- Suisse Int'l — the brand typeface (Light 300 / Regular 400 / Medium 500) ---- */
+@font-face {
+  font-family: "Suisse Intl";
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src: url("/assets/fonts/SuisseIntl-Light.woff2") format("woff2"),
+       url("/assets/fonts/SuisseIntl-Light.woff") format("woff");
+}
+@font-face {
+  font-family: "Suisse Intl";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("/assets/fonts/SuisseIntl-Regular.woff2") format("woff2"),
+       url("/assets/fonts/SuisseIntl-Regular.woff") format("woff");
+}
+@font-face {
+  font-family: "Suisse Intl";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url("/assets/fonts/SuisseIntl-Medium.woff2") format("woff2"),
+       url("/assets/fonts/SuisseIntl-Medium.woff") format("woff");
+}
+
+:root {
+  /* ---- Spectrum anchors (the brand gradient stops) ---- */
+  --sy-cyan:    #00E0E6;
+  --sy-blue:    #1B27FF;
+  --sy-violet:  #6A1FE0;
+  --sy-magenta: #C400D8;
+  --sy-pink:    #FF2EB4;
+  --sy-rose:    #E1005E;
+
+  /* ---- The signature gradients ---- */
+  --sy-gradient: linear-gradient(120deg,
+      var(--sy-cyan) 0%,
+      var(--sy-blue) 28%,
+      var(--sy-violet) 52%,
+      var(--sy-magenta) 74%,
+      var(--sy-pink) 100%);
+  --sy-gradient-bloom: radial-gradient(120% 120% at 70% 18%,
+      var(--sy-pink) 0%,
+      var(--sy-magenta) 22%,
+      var(--sy-violet) 46%,
+      var(--sy-blue) 70%,
+      var(--sy-cyan) 100%);
+  --sy-gradient-conic: conic-gradient(from 210deg,
+      var(--sy-cyan), var(--sy-blue), var(--sy-violet),
+      var(--sy-magenta), var(--sy-pink), var(--sy-cyan));
+
+  /* ---- Ink & neutrals (cool grey, slight blue cast) ---- */
+  --sy-ink:        #0B0B16;
+  --sy-ink-2:      #15151F;
+  --sy-night:      #0A0B2E;
+  --sy-grey-900:   #24242E;
+  --sy-grey-700:   #45454F;
+  --sy-grey-500:   #71717A;
+  --sy-grey-400:   #9A9AA3;
+  --sy-grey-300:   #C7C7CE;
+  --sy-grey-200:   #E4E4E9;
+  --sy-grey-100:   #F1F1F4;
+  --sy-grey-50:    #F8F8FA;
+  --sy-white:      #FFFFFF;
+
+  /* ---- Semantic status ---- */
+  --sy-success:    #12B36A;
+  --sy-warning:    #E8A100;
+  --sy-error:      #E11D48;
+  --sy-info:       var(--sy-blue);
+
+  /* ---- Semantic aliases ---- */
+  --text-primary:    var(--sy-ink);
+  --text-secondary:  var(--sy-grey-500);
+  --text-muted:      var(--sy-grey-400);
+  --text-inverse:    var(--sy-white);
+  --text-on-accent:  var(--sy-white);
+  --text-link:       var(--sy-blue);
+
+  --surface-page:    var(--sy-white);
+  --surface-subtle:  var(--sy-grey-50);
+  --surface-card:    var(--sy-white);
+  --surface-raised:  var(--sy-grey-100);
+  --surface-inverse: var(--sy-ink);
+  --surface-night:   var(--sy-night);
+
+  --border-subtle:   var(--sy-grey-200);
+  --border-default:  var(--sy-grey-300);
+  --border-strong:   var(--sy-grey-700);
+
+  --accent:          var(--sy-magenta);
+  --accent-gradient: var(--sy-gradient);
+  --focus-ring:      color-mix(in srgb, var(--sy-blue) 55%, transparent);
+
+  /* ---- Typography ---- */
+  --font-sans: "Suisse Intl", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --font-display: var(--font-sans);
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+
+  --text-2xs: 0.6875rem;
+  --text-xs:  0.75rem;
+  --text-sm:  0.875rem;
+  --text-base:1rem;
+  --text-lg:  1.1875rem;
+  --text-xl:  1.5rem;
+  --text-2xl: 2rem;
+  --text-3xl: 2.75rem;
+  --text-4xl: 3.75rem;
+  --text-5xl: 5rem;
+  --text-6xl: 7rem;
+
+  --leading-none:    1;
+  --leading-tight:   1.08;
+  --leading-snug:    1.25;
+  --leading-normal:  1.55;
+  --leading-relaxed: 1.7;
+
+  --tracking-display: -0.02em;
+  --tracking-tight:   -0.01em;
+  --tracking-normal:  0;
+  --tracking-caps:    0.12em;
+  --tracking-caps-sm: 0.08em;
+
+  --font-eyebrow:      var(--weight-medium) var(--text-xs)/1.2 var(--font-sans);
+  --font-body:         var(--weight-regular) var(--text-base)/var(--leading-normal) var(--font-sans);
+  --font-body-lg:      var(--weight-regular) var(--text-lg)/var(--leading-relaxed) var(--font-sans);
+
+  /* ---- Spacing scale (8px base) ---- */
+  --space-0:  0;
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.5rem;
+  --space-6:  2rem;
+  --space-7:  3rem;
+  --space-8:  4rem;
+  --space-9:  6rem;
+  --space-10: 8rem;
+  --space-11: 11rem;
+  --space-12: 14rem;
+
+  /* ---- Layout ---- */
+  --container-max: 1200px;
+  --container-prose: 680px;
+  --gutter: var(--space-5);
+
+  /* ---- Radii ---- */
+  --radius-xs:   4px;
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   18px;
+  --radius-xl:   28px;
+  --radius-pill: 999px;
+  --radius-circle: 50%;
+
+  --border-width: 1px;
+  --border-width-strong: 1.5px;
+
+  /* ---- Shadows ---- */
+  --shadow-xs: 0 1px 2px rgba(11, 11, 22, 0.05);
+  --shadow-sm: 0 2px 8px rgba(11, 11, 22, 0.06);
+  --shadow-md: 0 8px 24px rgba(11, 11, 22, 0.08);
+  --shadow-lg: 0 18px 48px rgba(11, 11, 22, 0.12);
+  --shadow-glow: 0 8px 40px rgba(106, 31, 224, 0.35);
+
+  /* ---- Motion ---- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 140ms;
+  --duration-base: 240ms;
+  --duration-slow: 480ms;
+  --duration-ambient: 12s;
+}
+
+/* ---- Reset + page base (from the original website index.html) ---- */
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--surface-page);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+::selection { background: color-mix(in srgb, var(--sy-magenta) 26%, transparent); }
+
+a { color: inherit; }
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ===== Site header (matches scaleyourself.com navigation) ===== */
+/* Responsive show/hide is class-driven; visual styling lives inline on the
+   SiteHeader component. Desktop nav above 920px, hamburger menu below. */
+.sy-desktop-nav { display: flex; }
+.sy-burger { display: none; }
+
+@media (max-width: 920px) {
+  .sy-desktop-nav { display: none; }
+  .sy-burger { display: inline-flex; }
+}
+
+@media (min-width: 921px) {
+  /* Never show the mobile sheet on desktop, even if it was left open. */
+  .sy-mobile-sheet { display: none !important; }
+}
