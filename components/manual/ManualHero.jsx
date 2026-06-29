@@ -1,19 +1,19 @@
 "use client";
 import React from "react";
-import { Input } from "@/components/ds";
 
 function SearchIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true" style={{ flex: "0 0 auto" }}>
       <circle cx="11" cy="11" r="7" /><path d="m20 20-3-3" />
     </svg>
   );
 }
 
 /**
- * ManualHero — centered headline + live search over the library.
+ * ManualHero — centered headline + a search trigger that opens the search
+ * overlay (the input itself lives in the modal).
  */
-export function ManualHero({ query, setQuery }) {
+export function ManualHero({ onOpenSearch }) {
   return (
     <section style={{ background: "var(--surface-page)", borderBottom: "1px solid var(--border-subtle)" }}>
       <div style={{ maxWidth: 960, margin: "0 auto", padding: "var(--space-11) var(--space-9)", textAlign: "center" }}>
@@ -25,7 +25,11 @@ export function ManualHero({ query, setQuery }) {
           Essays, frameworks, and video for the moments that don&apos;t show up on the roadmap. Drawn from thousands of hours coaching YC founders.
         </p>
         <div style={{ maxWidth: 520, margin: "0 auto" }}>
-          <Input prefix={<SearchIcon />} placeholder="Search by what you're facing…" value={query} onChange={(e) => setQuery(e.target.value)} aria-label="Search the User Manual" />
+          <button type="button" className="sy-hero-search" onClick={onOpenSearch} aria-label="Search the User Manual" aria-haspopup="dialog">
+            <SearchIcon />
+            <span style={{ flex: 1, textAlign: "left", fontFamily: "var(--font-sans)", fontSize: "var(--text-base)", color: "var(--text-muted)" }}>Search by what you&apos;re facing…</span>
+            <span className="sy-kbd sy-kbd-hide-mobile" aria-hidden="true">⌘K</span>
+          </button>
         </div>
       </div>
     </section>

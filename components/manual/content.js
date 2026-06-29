@@ -76,3 +76,57 @@ export function findPiece(slug) {
 export function essayHref(piece) {
   return `/essay/${slugify(piece.title)}`;
 }
+
+// ---- Search ----
+// Short topic label per challenge (shown as a tag on search results).
+const TOPICS = {
+  start: "Getting started",
+  emotions: "Emotions",
+  burnout: "Burnout",
+  drive: "Motivation",
+  cofounder: "Co-founders",
+  manager: "Leadership",
+  fundraising: "Fundraising",
+  vision: "Vision",
+};
+export function topicLabel(piece) {
+  return TOPICS[piece.challenge] || "";
+}
+
+// Extra search terms per challenge so plain-language queries (e.g.
+// "cofounder conflict", "leading a team") match the right pieces.
+const CHALLENGE_TERMS = {
+  start: "getting started beginning foundational where to begin first",
+  emotions: "emotions emotional anxiety anger reactivity paralysis feelings nervous system processing",
+  burnout: "burnout burned out exhausted exhaustion rest tired depleted guilt trough sorrow",
+  drive: "motivation confidence drive momentum clarity resentment fear of losing momentum growth inflection",
+  cofounder: "cofounder co-founder conflict partner relationship trust attachment clashing tension sync debt",
+  manager: "leading a team leadership manager management delegating feedback 1:1 one on one hiring team time audit",
+  fundraising: "fundraising raise fundraise investors conviction round",
+  vision: "vision direction north star purpose",
+};
+
+// Unique set of searchable pieces (LIBRARY plus featured-only items).
+const _librarySlugs = new Set(LIBRARY.map((p) => slugify(p.title)));
+const UNIQUE = [...LIBRARY, ...FEATURED.filter((p) => !_librarySlugs.has(slugify(p.title)))];
+
+export function searchPieces(query) {
+  const q = (query || "").trim().toLowerCase();
+  if (!q) return [];
+  const tokens = q.split(/\s+/).filter((t) => t.length >= 2);
+  if (!tokens.length) return [];
+  const scored = [];
+  for (const p of UNIQUE) {
+    const titleL = p.title.toLowerCase();
+    const hay = `${titleL} ${p.learn.toLowerCase()} ${p.challenge || ""} ${CHALLENGE_TERMS[p.challenge] || ""}`;
+    if (!tokens.every((t) => hay.includes(t))) continue;
+    let score = 0;
+    if (titleL.includes(q)) score += 5;
+    if (titleL.startsWith(q)) score += 3;
+    if (tokens.every((t) => titleL.includes(t))) score += 2;
+    if (p.stage === "foundational") score += 0.5;
+    scored.push({ p, score });
+  }
+  scored.sort((a, b) => b.score - a.score);
+  return scored.map((s) => s.p);
+}

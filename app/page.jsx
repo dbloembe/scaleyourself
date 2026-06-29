@@ -6,17 +6,32 @@ import { Featured } from "@/components/manual/Featured";
 import { Library } from "@/components/manual/Library";
 import { Ecosystem } from "@/components/manual/Ecosystem";
 import { Footer } from "@/components/site/Footer";
+import { SearchOverlay } from "@/components/search/SearchOverlay";
 
 export default function UserManual() {
-  const [query, setQuery] = React.useState("");
+  const [searchOpen, setSearchOpen] = React.useState(false);
+
+  // ⌘K / Ctrl+K opens search.
+  React.useEffect(() => {
+    const onKey = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
   return (
     <>
       <SiteHeader />
-      <ManualHero query={query} setQuery={setQuery} />
+      <ManualHero onOpenSearch={() => setSearchOpen(true)} />
       <Featured />
-      <Library query={query} />
+      <Library />
       <Ecosystem />
       <Footer />
+      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   );
 }
