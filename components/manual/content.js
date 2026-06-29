@@ -2,9 +2,9 @@
 // featured row, and the essay reader. Content is placeholder for now.
 
 export const FEATURED = [
-  { type: "essay", title: "What It Means to Scale Yourself", learn: "The core idea behind everything here: your company can't outgrow you, so growing yourself is the work.", read: "7 min", tag: "Most read" },
-  { type: "video", title: "Managing Your Emotions while Fundraising", learn: "Aaron Harris and Amy on holding steady through the raise — for founders heading into a round now.", read: "Video", tag: "New" },
-  { type: "essay", title: "Burnout", learn: "Why it happens to founders, and how to come back from it. The piece founders are reaching for most this month.", read: "7 min", tag: "Trending" },
+  { type: "essay", title: "The Founder Sync", learn: "A ritual for staying aligned as you both grow. The piece founders are reaching for most.", read: "5 min", tag: "Most read" },
+  { type: "essay", title: "Growth Inflection", learn: "What changes in you when the company's curve bends — newly added to the manual.", read: "6 min", tag: "New" },
+  { type: "essay", title: "The Tension Tug of War", learn: "Why you and your cofounder keep pulling against each other. Climbing fast this month.", read: "5 min", tag: "Trending" },
 ];
 
 export const LIBRARY = [
