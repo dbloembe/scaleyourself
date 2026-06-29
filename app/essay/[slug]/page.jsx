@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { findPiece, slugify, FEATURED, LIBRARY } from "@/components/manual/content";
+import { BODIES } from "@/components/manual/essay-bodies";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { ArticleActions } from "@/components/essay/ArticleActions";
 import { Footer } from "@/components/site/Footer";
@@ -70,26 +71,14 @@ function Body({ blocks }) {
   );
 }
 
-function PlaceholderBody({ learn }) {
+function ComingSoon({ piece }) {
   return (
     <div className="prose">
-      <p>{learn} This is placeholder content for the reader — the real essay will live here. What follows is representative of the voice and structure the finished piece will take.</p>
-      <figure>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/assets/backgrounds/bg-aurora.jpg" alt="" />
-        <figcaption>Your inner state is the medium every decision passes through.</figcaption>
-      </figure>
-      <p>Most founders treat their inner life as noise to push through. The best ones treat it as signal. When something feels off, the instinct is to act faster — but the faster move is usually to ask what the feeling is pointing at.</p>
-      <h2>A feeling is information</h2>
-      <p>A feeling isn&apos;t a bug in the system. It&apos;s data about what matters to you, and where something&apos;s off. A few of the signals founders run into most:</p>
-      <ul>
-        <li><strong>Anger</strong> tells you a boundary was crossed.</li>
-        <li><strong>Anxiety</strong> is a question you haven&apos;t answered yet.</li>
-        <li><strong>Resentment</strong> is a conversation you&apos;ve been avoiding.</li>
-      </ul>
-      <blockquote>The founders who scale are the ones who can feel something fully, name it, and then decide — instead of reacting.</blockquote>
-      <h2>Why it compounds</h2>
-      <p>Every hard call you make as a founder runs through your state. Multiply a small edge in clarity across thousands of decisions, and it becomes the difference between a company that reflects your panic and one that reflects your judgment.</p>
+      <p>{piece.learn}</p>
+      <p>
+        This {piece.type === "video" ? "video" : "piece"} is coming to the app soon. In the meantime, you can find it on the main site —{" "}
+        <a href="https://scaleyourself.com/the-user-manual-for-founder-psychology">browse the full User Manual</a>.
+      </p>
     </div>
   );
 }
@@ -111,7 +100,7 @@ export default function EssayPage({ params }) {
           <ArticleActions title={piece.title} />
         </div>
 
-        {piece.body ? <Body blocks={piece.body} /> : <PlaceholderBody learn={piece.learn} />}
+        {BODIES[params.slug] ? <Body blocks={BODIES[params.slug]} /> : <ComingSoon piece={piece} />}
 
         <div style={{ margin: "var(--space-9) 0 var(--space-10)" }}>
           <Link href="/" style={{ fontFamily: "var(--font-sans)", fontWeight: 500, fontSize: "var(--text-sm)", color: "var(--text-secondary)", textDecoration: "none" }}>← Back to the User Manual</Link>

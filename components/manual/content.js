@@ -9,43 +9,7 @@ export const FEATURED = [
 
 export const LIBRARY = [
   // Getting Started / foundational
-  {
-    type: "essay", title: "Introduction", learn: "Where to begin, and why this manual exists.", challenge: "start", stage: "foundational", read: "4 min",
-    body: [
-      { type: "p", runs: [
-        { t: "The User Manual for Founder Psychology", b: true },
-        { t: " was created by me, Amy Buechler - a licensed psychotherapist and YC's first in-house Founder Coach. I've helped thousands of founders grow from idea through IPO - and despite the chaos that every founder feels like they're uniquely experiencing, you'd be surprised how much consistency I hear in their stories. Every founder feels pressure, urgency, anxiety, and self-doubt - until they learn how to find confidence, clarity, ease, trust, and authenticity instead." },
-      ] },
-      { type: "p", runs: [
-        { t: "This Manual is a living record of what I've learned from working with founders: the predictable emotional and relational patterns that arise when pure ambition meets high stakes - and the tools that help you not just survive the intensity, but grow more resilient, grounded, and authentic because of it. It captures those patterns - the real emotional work behind scaling a company - and translates them into practical tools you can use to grow." },
-      ] },
-      { type: "p", runs: [
-        { t: "Building a startup isn't just about building a product - the challenges won't let it be. As your startup scales, it will demand that you scale too. Running a startup is an exercise in " },
-        { t: "becoming", i: true },
-        { t: " - deciding how to feel, how to think, and who you want to " },
-        { t: "be", i: true },
-        { t: " in order to overcome the challenges your startup bring you. " },
-        { t: "You", b: true, i: true },
-        { t: " are the most important creation of your startup.", b: true },
-      ] },
-      { type: "p", runs: [
-        { t: "I hope this guide helps you become a version of yourself that matches the transformational, world-shaking vision you have for your company. My dream is that the founder you become through this journey is infinitely more valuable to the world than however big your company gets." },
-      ] },
-      { type: "p", runs: [
-        { t: "You can read this Manual front to back, or dive into whatever you're wrestling with right now - whether it's " },
-        { t: "reactivity", href: "/essay/two-emotional-failure-modes-reactivity-and-paralysis" },
-        { t: ", " },
-        { t: "burnout", href: "/essay/burnout" },
-        { t: ", " },
-        { t: "cofounder conflict", href: "/" },
-        { t: ", or " },
-        { t: "fear of losing momentum", href: "/" },
-        { t: ". You can explore by theme, or begin with “" },
-        { t: "What It Means to Scale Yourself", href: "/essay/what-it-means-to-scale-yourself" },
-        { t: ",” which explains how founders can grow as fast and sustainably as their startups. However you use it, I hope it helps you grow into the founder your startup - and the world - needs most." },
-      ] },
-    ],
-  },
+  { type: "essay", title: "Introduction", learn: "Where to begin, and why this manual exists.", challenge: "start", stage: "foundational", read: "4 min" },
   { type: "essay", title: "Think of Your Self Like a Product", learn: "Treat your own mind like something you can study, debug, and improve.", challenge: "start", stage: "foundational", read: "6 min" },
   { type: "essay", title: "Anatomy", learn: "A map of the inner parts that drive how you lead.", challenge: "start", stage: "foundational", read: "5 min" },
 
