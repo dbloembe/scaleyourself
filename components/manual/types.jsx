@@ -34,7 +34,3 @@ export function TypePill({ type }) {
     </span>
   );
 }
-
-// The piece-reading flow gates to sign-up in production. For this v1 the
-// articles still live on the main site, so reading actions route there.
-export const GATE = "https://scaleyourself.com/the-user-manual-for-founder-psychology";

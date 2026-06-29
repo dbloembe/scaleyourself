@@ -1,24 +1,12 @@
 "use client";
 import React from "react";
+import { useRouter } from "next/navigation";
 import { Badge, Card } from "@/components/ds";
-import { TYPES, TypePill, GATE } from "./types";
-
-// ── "Featured right now" data source ──────────────────────────────
-// In production this is populated from analytics and refreshed on a
-// schedule so the section always reflects live behaviour (most read /
-// new / trending). getFeaturedNow() is the seam for that fetch — it
-// returns a curated fallback until the endpoint is wired.
-function getFeaturedNow() {
-  return [
-    { type: "essay", title: "What It Means to Scale Yourself", learn: "The core idea behind everything here: your company can't outgrow you, so growing yourself is the work.", read: "7 min", tag: "Most read" },
-    { type: "video", title: "Managing Your Emotions while Fundraising", learn: "Aaron Harris and Amy on holding steady through the raise — for founders heading into a round now.", read: "Video", tag: "New" },
-    { type: "essay", title: "Burnout", learn: "Why it happens to founders, and how to come back from it. The piece founders are reaching for most this month.", read: "7 min", tag: "Trending" },
-  ];
-}
-const FEATURED = getFeaturedNow();
+import { TYPES, TypePill } from "./types";
+import { FEATURED, essayHref } from "./content";
 
 export function Featured() {
-  const goGate = () => { window.location.href = GATE; };
+  const router = useRouter();
   return (
     <section style={{ background: "var(--surface-subtle)", padding: "var(--space-10) var(--space-9)" }}>
       <div style={{ maxWidth: "var(--container-max)", margin: "0 auto" }}>
@@ -28,7 +16,7 @@ export function Featured() {
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "var(--space-7)" }}>
           {FEATURED.map((p) => (
-            <Card key={p.title} interactive padding="0" onClick={goGate} style={{ cursor: "pointer", overflow: "hidden", display: "flex", flexDirection: "column" }}>
+            <Card key={p.title} interactive padding="0" onClick={() => router.push(essayHref(p))} style={{ cursor: "pointer", overflow: "hidden", display: "flex", flexDirection: "column" }}>
               <div style={{ height: 8, background: "var(--sy-gradient)" }} />
               <div style={{ padding: "var(--space-7)", display: "flex", flexDirection: "column", flex: 1 }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "var(--space-5)" }}>

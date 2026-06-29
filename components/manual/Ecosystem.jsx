@@ -1,13 +1,15 @@
 "use client";
 import React from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ds";
-import { GATE } from "./types";
+import { LIBRARY, essayHref } from "./content";
 
 /**
  * Ecosystem — connected-body-of-work closer over the aurora background.
  */
 export function Ecosystem() {
-  const goGate = () => { window.location.href = GATE; };
+  const router = useRouter();
+  const start = () => router.push(essayHref(LIBRARY[0])); // Introduction
   return (
     <section style={{ position: "relative", overflow: "hidden", color: "#fff", background: "var(--surface-night)" }}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -18,7 +20,7 @@ export function Ecosystem() {
         <p style={{ margin: "0 auto var(--space-7)", fontFamily: "var(--font-sans)", fontWeight: 300, fontSize: "var(--text-lg)", lineHeight: 1.55, opacity: 0.92, maxWidth: "42ch", textWrap: "pretty" }}>
           The User Manual is one connected body of work — essays, frameworks, and video, growing all the time. Start anywhere; it&apos;ll show you where to go next.
         </p>
-        <Button variant="solid" size="lg" onClick={goGate}>Start reading free</Button>
+        <Button variant="solid" size="lg" onClick={start}>Start reading free</Button>
       </div>
     </section>
   );
