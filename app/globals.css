@@ -246,6 +246,42 @@ a { color: inherit; }
 .sy-kbd-hide-mobile { display: inline-flex; }
 @media (max-width: 640px) { .sy-kbd-hide-mobile { display: none; } }
 
+/* ===== Hero scroll cue ===== */
+.sy-scroll-cue {
+  display: inline-flex; align-items: center; gap: 7px;
+  border: none; background: transparent; cursor: pointer;
+  font-family: var(--font-sans); font-size: var(--text-sm); font-weight: 500;
+  color: var(--text-muted); letter-spacing: 0.01em;
+  padding: 8px 12px; border-radius: var(--radius-pill);
+  transition: color var(--duration-base) var(--ease-out);
+  animation: syCueIn var(--duration-slow) var(--ease-out) both;
+  animation-delay: 220ms;
+}
+.sy-scroll-cue:hover { color: var(--text-secondary); }
+.sy-scroll-cue:hover .sy-scroll-cue-arrow { transform: translateY(2px); }
+.sy-scroll-cue:focus-visible { outline: none; color: var(--text-secondary); box-shadow: 0 0 0 3px var(--focus-ring); }
+.sy-scroll-cue-arrow { transition: transform var(--duration-base) var(--ease-out); display: inline-flex; }
+/* Two stacked copies of the label: a grey base, and a full-gradient copy
+   revealed left-to-right with clip-path when active — a clean wipe, no edge
+   artifacts. */
+.sy-scroll-cue-textwrap { position: relative; display: inline-block; white-space: nowrap; }
+.sy-scroll-cue-base { color: currentColor; }
+.sy-scroll-cue-grad {
+  position: absolute; left: 0; top: 0;
+  background: var(--sy-gradient); -webkit-background-clip: text; background-clip: text; color: transparent;
+  clip-path: inset(0 100% 0 0);
+}
+@keyframes syCueIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* Active state — kicks in after a moment to invite scrolling. */
+.sy-scroll-cue--active .sy-scroll-cue-grad { animation: syCueReveal 2.8s linear forwards; }
+.sy-scroll-cue--active .sy-scroll-cue-arrow path { animation: syCueArrowColor 0.01s linear 2.82s forwards; }
+.sy-scroll-cue--active .sy-scroll-cue-arrow { animation: syCueBob 1.6s var(--ease-in-out) 2.9s infinite; }
+.sy-scroll-cue--active:hover .sy-scroll-cue-arrow { transform: none; }
+@keyframes syCueReveal { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes syCueArrowColor { to { stroke: url(#syCueGrad); } }
+@keyframes syCueBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+
 /* ===== Search overlay (command palette) ===== */
 .sy-search-root {
   position: fixed; inset: 0; z-index: 100;

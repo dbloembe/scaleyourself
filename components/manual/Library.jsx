@@ -104,10 +104,10 @@ export function Library({ query = "" }) {
   }
 
   return (
-    <section style={{ background: "var(--surface-page)", padding: "var(--space-10) var(--space-9)" }}>
+    <section style={{ background: "var(--surface-page)", padding: "clamp(56px, 9vw, 128px) clamp(20px, 6vw, 64px)" }}>
       <div style={{ maxWidth: "var(--container-max)", margin: "0 auto" }}>
         {/* Framing */}
-        <div style={{ maxWidth: "min(46%, 520px)", marginBottom: "var(--space-7)" }}>
+        <div style={{ maxWidth: "min(100%, 520px)", marginBottom: "var(--space-7)" }}>
           <h2 style={{ margin: 0, fontFamily: "var(--font-sans)", fontWeight: 500, letterSpacing: "-0.02em", fontSize: "var(--text-2xl)", color: "var(--text-primary)" }}>Where do you want to focus?</h2>
           <p style={{ margin: "var(--space-3) 0 0", fontFamily: "var(--font-sans)", fontSize: "var(--text-base)", lineHeight: 1.55, color: "var(--text-secondary)" }}>Explore what matters most to you right now. Choose as many topics as you like — they&apos;re often connected.</p>
         </div>
@@ -154,7 +154,7 @@ export function Library({ query = "" }) {
         {/* Grid */}
         {list.length > 0 ? (
           <React.Fragment>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: "var(--space-6)" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 280px), 1fr))", gap: "var(--space-6)" }}>
               {visible.map((p) => <PieceCard key={p.title} p={p} />)}
             </div>
             {list.length > shown && (

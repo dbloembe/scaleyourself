@@ -27,7 +27,7 @@ export default function UserManual() {
     <>
       <SiteHeader />
       <ManualHero onOpenSearch={() => setSearchOpen(true)} />
-      <Featured />
+      <div id="featured" style={{ scrollMarginTop: 92 }}><Featured /></div>
       <Library />
       <Ecosystem />
       <Footer />

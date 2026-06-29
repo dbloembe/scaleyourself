@@ -84,7 +84,7 @@ export function SiteHeader() {
 
   return (
     <header style={{ position: "sticky", top: 0, zIndex: 50, background: "rgba(255,255,255,0.9)", backdropFilter: "saturate(180%) blur(12px)", WebkitBackdropFilter: "saturate(180%) blur(12px)", borderBottom: "1px solid var(--border-subtle)" }}>
-      <div style={{ maxWidth: 1320, margin: "0 auto", padding: "0 var(--space-7)", height: 84, display: "flex", alignItems: "center", justifyContent: "space-between", gap: "var(--space-5)" }}>
+      <div style={{ maxWidth: 1320, margin: "0 auto", padding: "0 clamp(20px, 5vw, 48px)", minHeight: 84, display: "flex", alignItems: "center", justifyContent: "space-between", gap: "var(--space-5)" }}>
         <Wordmark />
 
         {/* Desktop nav */}

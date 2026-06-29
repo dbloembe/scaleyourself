@@ -39,7 +39,7 @@ export function Footer() {
   };
   return (
     <footer style={{ background: "var(--surface-inverse)", color: "#fff", padding: "var(--space-9) var(--space-6) var(--space-7)" }}>
-      <div style={{ maxWidth: "var(--container-max)", margin: "0 auto", display: "grid", gridTemplateColumns: "1.6fr 1fr 1fr", gap: "var(--space-7)" }}>
+      <div style={{ maxWidth: "var(--container-max)", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 220px), 1fr))", gap: "var(--space-7)" }}>
         <div>
           <a href={EXT.home} style={{ textDecoration: "none", display: "inline-block", lineHeight: 0.98 }}>
             <span style={{ display: "block", fontFamily: "var(--font-sans)", fontWeight: 500, textTransform: "uppercase", letterSpacing: "-0.01em", fontSize: 22, background: "var(--sy-gradient)", WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>Scale</span>
